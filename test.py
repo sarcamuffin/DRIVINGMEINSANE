@@ -18,7 +18,7 @@ try:
     mapping_df = pd.read_excel('Mapping_noms_variables_sphinx.xlsx')
     column_mapping = dict(zip(mapping_df['Anciens Noms'], mapping_df['Nouveaux Noms']))
     df.rename(columns=column_mapping, inplace=True)
-    client_name = 'emi'
+    client_name = 'client AM'
     df_emi = df[df['Clien_Name'] == client_name]
     excluded_columns = ["Clien_Name", "Secteur", "axe-reglement", "reglement", "CLE",
                         "DATE_SAISIE", "DATE_ENREG", "DATE_MODIF", "TEMPS_SAISIE", "ORIGINE_SAISIE",
