@@ -6,9 +6,10 @@ from dash import dash_table
 
 # Custom color scheme
 colors = {
-    'background': '#E3F2FD',
-    'text': '#007BFF',
-    'card_background': '#FFFFFF'
+    'background': '#F9F9F9',
+    'text': '#D04A02',  # PWC Dark Orange
+    'card_background': '#FFFFFF',
+    'plotly': ['#EB8C00', '#D04A02', '#DB536A', '#E0301E', '#000000']
 }
 
 # Reading and processing data
@@ -48,13 +49,13 @@ def generate_graph(figure, title):
         )
     ])
 
-# Creating visualizations
-fig_bar = px.bar(data_for_plot, x='Theme', y='Moyenne', text_auto=True)
-fig_scatter = px.scatter(data_for_plot, x='Theme', y='Moyenne', color='Moyenne', size='Moyenne')
-fig_box = px.box(data_for_plot, y='Moyenne', x='Theme')
-fig_hist = px.histogram(data_for_plot, x='Moyenne', nbins=20)
-fig_heatmap = px.imshow(df_emi[[theme + ' Moyenne' for theme in themes]].corr())
-fig_radar = px.line_polar(data_for_plot, r='Moyenne', theta='Theme', line_close=True)
+# Creating visualizations with custom colors
+fig_bar = px.bar(data_for_plot, x='Theme', y='Moyenne', text_auto=True, color_discrete_sequence=colors['plotly'])
+fig_scatter = px.scatter(data_for_plot, x='Theme', y='Moyenne', color='Moyenne', size='Moyenne', color_continuous_scale=colors['plotly'])
+fig_box = px.box(data_for_plot, y='Moyenne', x='Theme', color_discrete_sequence=colors['plotly'])
+fig_hist = px.histogram(data_for_plot, x='Moyenne', nbins=20, color_discrete_sequence=colors['plotly'])
+fig_heatmap = px.imshow(df_emi[[theme + ' Moyenne' for theme in themes]].corr(), color_continuous_scale=colors['plotly'])
+fig_radar = px.line_polar(data_for_plot, r='Moyenne', theta='Theme', line_close=True, color_discrete_sequence=colors['plotly'])
 
 # Navigation bar
 nav_bar = html.Div(className='nav-bar', children=[
@@ -135,8 +136,8 @@ def generate_comparative_sections(pathname):
             theme_data = df_emi[theme_cols + [theme + ' Moyenne']]
             theme_plot = theme_data.mean().reset_index()
             theme_plot.columns = ['Sub-Theme', 'Moyenne']
-            fig_theme_bar = px.bar(theme_plot, x='Sub-Theme', y='Moyenne', color='Moyenne')
-            fig_theme_pie = px.pie(theme_plot, values='Moyenne', names='Sub-Theme', color='Moyenne')
+            fig_theme_bar = px.bar(theme_plot, x='Sub-Theme', y='Moyenne', color='Moyenne', color_continuous_scale=colors['plotly'])
+            fig_theme_pie = px.pie(theme_plot, values='Moyenne', names='Sub-Theme', color_discrete_sequence=colors['plotly'])
             
             section = html.Div(className='card', children=[
                 html.H2(f'Chapter: {theme}', style={'color': colors['text']}),

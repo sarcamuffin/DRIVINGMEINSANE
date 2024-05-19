@@ -1,18 +1,18 @@
 /* assets/style.css */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #E3F2FD;
+    background-color: #F9F9F9; /* Light gray background for better contrast */
 }
 
 .nav-bar {
-    background-color: #00ACC1;
+    background-color: #EB8C00; /* PWC Orange */
     padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .nav-link {
-    color: #FFFFFF;
+    color: #FFFFFF; /* White text for nav links */
     text-decoration: none;
     margin: 0 15px;
     font-size: 16px;
@@ -24,15 +24,15 @@ body {
 }
 
 .card {
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* White background for cards */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for cards */
     padding: 20px;
     margin: 15px;
 }
 
 .card h2 {
-    color: #007BFF;
+    color: #D04A02; /* PWC Dark Orange */
     font-size: 18px;
     margin-bottom: 15px;
 }
@@ -52,7 +52,18 @@ body {
 }
 
 .header {
-    color: #007BFF;
+    color: #D04A02; /* PWC Dark Orange */
     text-align: center;
     margin: 20px 0;
+}
+
+footer {
+    background-color: #000000; /* Black footer */
+    color: #FFFFFF; /* White text */
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
